@@ -1,23 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Buscador from "./components/Buscador";
+import Crear from "./components/Crear";
+import Listado from "./components/Listado";
 
 function App() {
+    const [listadoSatate, setListadoState] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="layout">
+        {/*CABECERA*/}
+        <header className="header">
+            <div className="logo">
+                <div className="play"></div>
+            </div>
+            <h1>MisPelis</h1>
+        </header>
+        {/*BARRA DE NAVEGACION*/}
+        <nav className="nav">
+            <ul>
+                <li><a href="/#">Inicio</a></li>
+                <li><a href="/#">Películas</a></li>
+                <li><a href="/#">Blog</a></li>
+                <li><a href="/#">Contacto</a></li>
+            </ul>
+        </nav>
+        {/*CONTENIDO PRINCIPAL*/}
+        <section className="content">
+          <Listado listadoSatate={listadoSatate} setListadoState={setListadoState} />
+        </section>
+        {/*MENU LATERAL*/}
+        <aside className="aside">
+            <Buscador listadoSatate={listadoSatate} setListadoState={setListadoState} />
+            <Crear setListadoState={setListadoState} />
+        </aside>
+        {/*FOOTER*/}
+        <footer className="footer">
+            &copy; Proyecto películas<a href="marcosbustos.cl">marcosbustos.cl</a>
+        </footer>
     </div>
   );
 }
